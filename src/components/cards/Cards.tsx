@@ -1,38 +1,54 @@
 "use client";
-import { ChampionsLol } from '@/interface/IchampionsLeagueOfLegends';
+import { ChampionsLol, Datum } from '@/interface/IchampionsLeagueOfLegends';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { motion, useDragControls } from "framer-motion";
+import React, { useContext, useEffect, useState } from 'react';
+import { PanInfo, motion, useDragControls } from "framer-motion";
+import { ChampionsSaveContext } from '../context/ChampionsSaveContext';
 
 interface Props {
     champions: ChampionsLol;
 }
 
 export const Cards = ({ champions }: Props) => {
-    const [championsToShow, setChampionsToShow] = useState([]);
-    const [listSaveChampions, setListSaveChampions] = useState([]);
+    const [championsToShow, setChampionsToShow] = useState<Datum[] | []>([]);
+    const { addChampion, handleNoMoreCards } = useContext(ChampionsSaveContext);
     const controls = useDragControls();
+
 
     useEffect(() => {
         if (champions.data) {
             const array = Object.values(champions.data);
-            setChampionsToShow(array);
+            const randomChampions = array.sort(() => Math.random() - 0.5);
+            const championsToShow = randomChampions.slice(0, 10);
+            setChampionsToShow(championsToShow);
         }
     }, []);
 
-    const handleDragEnd = (event, { offset, velocity }) => {
+    const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo, champion: Datum) => {
 
         if (offset.x > 0) {
             // Arrastre hacia la derecha
             setChampionsToShow((prevChampions) => {
+                // Eliminar el primer elemento del array
                 const newChampions = [...prevChampions];
-                const firstChampion = newChampions.shift();
-                newChampions.push(firstChampion);
+                newChampions.shift();
                 return newChampions;
             });
+
+            addChampion(champion);
+
         } else if (offset.x < 0) {
             // Arrastre hacia la izquierda
             // Puedes agregar lógica adicional aquí si deseas manejar el arrastre hacia la izquierda
+            setChampionsToShow((prevChampions) => {
+                // Eliminar el primer elemento del array
+                const newChampions = [...prevChampions];
+                newChampions.shift();
+                if (newChampions.length === 0) {
+                    handleNoMoreCards();
+                }
+                return newChampions;
+            });
         }
     };
 
@@ -47,7 +63,7 @@ export const Cards = ({ champions }: Props) => {
                     dragElastic={0.5}
                     className='flex flex-col justify-center items-center bg-white rounded-lg shadow-lg p-5 absolute'
                     dragControls={controls}
-                    onDragEnd={(event, info) => handleDragEnd(event, info)}
+                    onDragEnd={(event, info) => handleDragEnd(event, info, champion)}
                     style={{ zIndex: championsToShow.length - index }}
                 >
                     <Image

@@ -1,5 +1,7 @@
-import './globals.css'
 import type { Metadata } from 'next'
+import { ChampionsSaveProvider } from '@/components/context/ChampionsSaveProvider';
+import './globals.css'
+
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -13,9 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex w-auto h-screen items-center justify-center bg-slate-900">
-        {children}
-      </body>
+      <ChampionsSaveProvider>
+        <body className="flex w-auto h-screen items-center justify-center bg-slate-900">
+          {children}
+        </body>
+      </ChampionsSaveProvider>
     </html>
   )
 }

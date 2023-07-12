@@ -1,4 +1,4 @@
-import { Cards } from '@/components/cards/Cards'
+import HomeScreenPage from '@/components/page/HomeScreenPage'
 import { ChampionsLol } from '@/interface/IchampionsLeagueOfLegends'
 import React from 'react'
 
@@ -13,10 +13,8 @@ const home = async () => {
   const getChampions: ChampionsLol = await getfetchData()
 
   return (
-    <div className='justify-center items-center  '>
-      <Cards
-        champions={getChampions}
-      />
+    <div className='justify-center items-center'>
+      <HomeScreenPage getChampions={getChampions} />
     </div>
   )
 }
