@@ -49,7 +49,7 @@ const HomeScreenPage = ({ getChampions }: Props) => {
                     className='text-white text-2xl font-bold text-center'
                 >
                     {
-                        `${'Drag right to discard' + ' ' + '--->'}`
+                        `${'Drag right to add' + ' ' + '--->'}`
                     }
                 </h2>
             </div>
