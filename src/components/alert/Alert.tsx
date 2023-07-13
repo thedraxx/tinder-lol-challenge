@@ -1,6 +1,7 @@
 'use client';
 import React, { useContext } from 'react'
 import { ChampionsSaveContext } from '../context/ChampionsSaveContext';
+import Image from 'next/image';
 
 interface Props {
     title: 'No more cards' | '¡Ya have selected 5 champions!';
@@ -10,19 +11,18 @@ const Alert = ({ title }: Props) => {
     const { listSaveChampions } = useContext(ChampionsSaveContext);
 
     return (
-        <div className="bg-yellow-200 text-yellow-800 p-10 rounded-md shadow-md">
+        <div className="bg-slate-100 text-yellow-800 p-10 rounded-md shadow-md">
             <div className="flex items-start">
                 <div className="flex-shrink-0">
                     <svg className="h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
                 </div>
-
                 {
                     title === 'No more cards'
                         ? <div className="ml-3">
-                            <p className="text-sm font-medium">No more cards</p>
-                            <p className="mt-1 text-sm">You have seen all the cards</p>
+                            <p className="text-sm font-medium">Oh oh! No more cards!</p>
+                            <p className="mt-1 text-sm">You need to select 5 champions</p>
                             <div className="mt-4">
                                 <button
                                     className="mt-4 text-sm font-medium text-yellow-600 hover:text-yellow-500"
@@ -32,21 +32,40 @@ const Alert = ({ title }: Props) => {
                                 </button>
                             </div>
                         </div>
-                        : <div className="ml-3">
+                        : <div className="ml-3  items-center justify-center flex  flex-col">
                             <p className="text-sm font-medium">¡Ya have selected 5 champions!</p>
                             <p className="mt-1 text-sm">Your Teanmate is...</p>
                             <div className="mt-2 text-sm">
 
-                                <ul className="list-disc pl-5 space-y-1">
+                                <ul
+                                    className="grid grid-cols-5 gap-3 justify-center items-center align-middle"
+                                >
                                     {listSaveChampions.map((champion) => (
-                                        <li key={champion.id}>
-                                            {champion.name}
+                                        <li
+                                            key={champion.id}
+                                            className="flex flex-col justify-center items-center"
+                                        >
+                                            <Image
+                                                src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_0.jpg`}
+                                                alt="Picture of the author"
+                                                width={300}
+                                                height={200}
+                                                className='rounded-md shadow-full shadow-2xl  hover:scale-75  transition duration-500 ease-in-out'
+                                            />
+                                            <h2
+                                                className="text-md text-gray-600 mt-2"
+                                            >
+                                                {champion.title}
+                                            </h2>
+                                            <h3
+                                                className="text-xl text-gray-600"
+                                            >
+                                                {champion.name}
+                                            </h3>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
-
-
                             <div className="mt-4">
                                 <button
                                     className="mt-4 text-sm font-medium text-yellow-600 hover:text-yellow-500"
@@ -55,11 +74,8 @@ const Alert = ({ title }: Props) => {
                                     Reset Game
                                 </button>
                             </div>
-
                         </div>
                 }
-
-
             </div>
         </div>
 
