@@ -11,7 +11,7 @@ const Alert = ({ title }: Props) => {
     const { listSaveChampions } = useContext(ChampionsSaveContext);
 
     return (
-        <div className="bg-slate-100 text-yellow-800 p-10 rounded-md shadow-md">
+        <div className="bg-slate-100 text-yellow-800 p-10 rounded-md shadow-md w-96 sm:w-auto sm:top-24">
             <div className="flex items-start">
                 <div className="flex-shrink-0">
                     <svg className="h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -38,7 +38,7 @@ const Alert = ({ title }: Props) => {
                             <div className="mt-2 text-sm">
 
                                 <ul
-                                    className="grid grid-cols-5 gap-3 justify-center items-center align-middle"
+                                    className="grid grid-cols-2 gap-3 justify-center items-center align-middle sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5"
                                 >
                                     {listSaveChampions.map((champion) => (
                                         <li
@@ -53,12 +53,12 @@ const Alert = ({ title }: Props) => {
                                                 className='rounded-md shadow-full shadow-2xl  hover:scale-75  transition duration-500 ease-in-out'
                                             />
                                             <h2
-                                                className="text-md text-gray-600 mt-2"
+                                                className="text-gray-600 mt-2 sm:text-sm md:text-md lg:text-lg xl:text-xl "
                                             >
                                                 {champion.title}
                                             </h2>
                                             <h3
-                                                className="text-xl text-gray-600"
+                                                className="text-xl text-gray-600 sm:text-sm md:text-md lg:text-lg xl:text-xl"
                                             >
                                                 {champion.name}
                                             </h3>

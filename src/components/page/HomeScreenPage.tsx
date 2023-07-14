@@ -13,8 +13,6 @@ const HomeScreenPage = ({ getChampions }: Props) => {
 
     const { listSaveChampions, noMoreCards } = useContext(ChampionsSaveContext);
 
-    console.log(listSaveChampions)
-
     return (
         <>
             {
@@ -32,26 +30,32 @@ const HomeScreenPage = ({ getChampions }: Props) => {
             }
 
             <div
-                className='text-white text-4xl font-bold text-center absolute z-30 items-center align-center left-0 right-0 top-10'
+                className='text-white text-center absolute z-30 items-center align-center left-0 right-0 top-20'
             >
-                <h1 className='text-white text-4xl font-bold text-center mb-5'>
+                <h1 className='text-white text-md font-bold text-center mb-5 sm:text-xl md:text-xl'>
                     Create your team
                 </h1>
 
-                <h2
-                    className='text-white text-2xl font-bold text-center mb-5'
+                <div
+                    className='flex flex-row justify-center items-center md:flex-col lg:flex-row xl:flex-col'
                 >
-                    {
-                        `${'<---' + ' ' + 'Drag left to discard'}`
-                    }
-                </h2>
-                <h2
-                    className='text-white text-2xl font-bold text-center'
-                >
-                    {
-                        `${'Drag right to add' + ' ' + '--->'}`
-                    }
-                </h2>
+                    <h2
+                        className='text-white text-md font-bold text-center  sm:text-xl md:text-xl'
+                    >
+                        {
+                            `${'<---' + ' ' + 'Drag left to discard'}`
+                        }
+                    </h2>
+                    <h2
+                        className='text-white text-md font-bold text-center ml-5 sm:text-xl md:text-xl'
+                    >
+                        {
+                            `${'Drag right to add' + ' ' + '--->'}`
+                        }
+                    </h2>
+                </div>
+
+
             </div>
 
             <Cards

@@ -53,7 +53,7 @@ export const Cards = ({ champions }: Props) => {
     };
 
     return (
-        <div className='flex flex-row justify-center items-center'>
+        <div className='flex flex-row justify-center items-center w-96'>
             {championsToShow.map((champion, index) => (
                 <motion.div
                     initial={{ x: 0, y: 0, scale: 1 }}
