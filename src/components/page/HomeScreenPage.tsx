@@ -28,36 +28,6 @@ const HomeScreenPage = ({ getChampions }: Props) => {
                         />
                     </div>
             }
-
-            <div
-                className='text-white text-center absolute z-30 items-center align-center left-0 right-0 top-20'
-            >
-                <h1 className='text-white text-md font-bold text-center mb-5 sm:text-xl md:text-xl'>
-                    Create your team
-                </h1>
-
-                <div
-                    className='flex flex-row justify-center items-center md:flex-col lg:flex-row xl:flex-col'
-                >
-                    <h2
-                        className='text-white text-md font-bold text-center  sm:text-xl md:text-xl'
-                    >
-                        {
-                            `${'<---' + ' ' + 'Drag left to discard'}`
-                        }
-                    </h2>
-                    <h2
-                        className='text-white text-md font-bold text-center ml-5 sm:text-xl md:text-xl'
-                    >
-                        {
-                            `${'Drag right to add' + ' ' + '--->'}`
-                        }
-                    </h2>
-                </div>
-
-
-            </div>
-
             <Cards
                 champions={getChampions}
             />
